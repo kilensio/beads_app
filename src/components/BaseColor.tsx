@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../store';
 import { selectColorBase, setColorBase } from '../store/schemeSlice';
@@ -15,14 +14,10 @@ const BaseColor = () => {
 
 	return (
 		<Wrap>
-			{/* <span>Base:</span> */}
 			<PaletteColor
-				// defaultColor={color}
 				defaultColor={baseColor}
 				onChange={(color) => dispatch(setColorBase(color))}
 				size={48}
-				// active={colorId === idx}
-				// onActive={() => dispatch(setColorCurrent(idx))}
 			/>
 		</Wrap>
 	);

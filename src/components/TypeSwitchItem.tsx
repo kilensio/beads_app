@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface Props {
 	active?: boolean;
@@ -14,24 +14,29 @@ const Wrap = styled.div<{ active?: boolean }>`
 	position: relative;
 	height: 48px;
 	width: 48px;
-	color: ${({ active }) => (active ? '#028abf' : 'gray')};
-	/* padding: 2px; */
-	border: 1px ${({ active }) => (active ? 'solid white' : 'solid gray')};
-	/* outline: 1px; */
-	outline: ${({ active }) => (active ? '2px lightblue solid' : '0px white')};
-	box-shadow: ${({ active }) =>
-		active ? '0px 0px 3px -1px rgba(0, 0, 0, 0.5) inset' : 'unset'};
 	transition: outline-color 264ms, border-color 264ms;
-	/* border: 1px solid #000; */
 	cursor: pointer;
 	border-radius: 2px;
 	flex-grow: 0;
 	flex-shrink: 0;
+	color: gray;
+	border: 1px solid gray;
+	outline: 0px white;
+	box-shadow: unset;
 
 	&:hover {
 		transition: outline-color 264ms, border-color 264ms, color 300ms;
 		color: #028abf;
 	}
+
+	${({ active }) =>
+		active &&
+		css`
+			color: #028abf;
+			border: 1px solid white;
+			outline: 2px lightblue solid;
+			box-shadow: 0px 0px 3px -1px rgba(0, 0, 0, 0.5) inset;
+		`}
 `;
 
 const TypeSwitchItem: React.FC<Props> = ({ active, children, onSelect }) => {

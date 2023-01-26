@@ -13,7 +13,7 @@ interface Props {
 	clearMode: boolean;
 	palette: string[];
 	onClearMode: (isColor: boolean) => void;
-	onChangeColor: (color: number | undefined) => void;
+	onChangeColor?: (color: number | undefined) => void;
 }
 
 const Bead: React.FC<Props> = ({
@@ -22,7 +22,6 @@ const Bead: React.FC<Props> = ({
 	width,
 	height,
 	borderRadius,
-	defaultColor,
 	color,
 	baseColor,
 	clearMode,
@@ -35,7 +34,7 @@ const Bead: React.FC<Props> = ({
 	);
 
 	useEffect(() => {
-		onChangeColor(currentColor);
+		onChangeColor?.(currentColor);
 	}, [onChangeColor, currentColor]);
 
 	return (
@@ -67,4 +66,4 @@ const Bead: React.FC<Props> = ({
 	);
 };
 
-export default Bead;
+export default React.memo(Bead);

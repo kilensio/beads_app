@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import TypeSwitchItem from './TypeSwitchItem';
 
@@ -6,21 +6,20 @@ import { ReactComponent as PatternRawImage } from '../assets/PatternRaw.svg';
 import { ReactComponent as PatternBrickImage } from '../assets/PatternBrick.svg';
 import { ReactComponent as PatternSquareImage } from '../assets/PatternSquare.svg';
 import { SchemeType } from '../interface/scheme';
+import { useAppDispatch, useAppSelector } from '../store';
+import { selectType, setType } from '../store/schemeSlice';
 
-// interface Props {}
 
 const Wrap = styled.div`
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
 	align-items: center;
-	/* flex-wrap: wrap; */
 	gap: 4px;
-	/* margin: 16px 0; */
 `;
 
 const TypeSwitcher = () => {
-	const [currentType, setCurrentType] = useState(SchemeType.Square);
+	const dispatch = useAppDispatch();
+	const currentType = useAppSelector(selectType);
 
 	const types = useMemo<
 		Array<{
@@ -44,16 +43,14 @@ const TypeSwitcher = () => {
 		],
 		[]
 	);
-	// <PatternSquareImage width={26} height={26} />
-	// <PatternRawImage width={26} height={26} />
-	// <PatternBrickImage width={26} height={26} />
+
 	return (
 		<Wrap>
 			{types?.map(({ type, Icon }) => (
 				<TypeSwitchItem
 					active={type === currentType}
 					key={type}
-					onSelect={() => setCurrentType(type)}
+					onSelect={() => dispatch(setType(type))}
 				>
 					<Icon width={34} height={34} />
 				</TypeSwitchItem>

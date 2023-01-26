@@ -26,10 +26,10 @@ interface SchemeState {
 }
 
 const initialState: SchemeState = {
-	type: null,
+	type: SchemeType.Square,
 	// activeColor: 0,
 	color: {
-		palette: ['#eeeeee'],
+		palette: ['#028abf'],
 		current: 0,
 		base: '#ffffff',
 	},
@@ -38,8 +38,8 @@ const initialState: SchemeState = {
 	// 	clearMode: false,
 	// },
 	schemeSize: {
-		rows: 4,
-		columns: 88,
+		rows: 5,
+		columns: 50,
 	},
 	beadSize: {
 		width: 200,
